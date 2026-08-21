@@ -19,8 +19,24 @@ from typing import List
 
 
 def max_profit(prices: List[int]) -> int:
-    # TODO: implement
-    raise NotImplementedError
+    profit = 0
+    L = 0
+    R = 1
+    while R < len(prices):
+        if prices[R] < prices[L]:
+            L = R
+        else:
+            profit = max(profit, prices[R] - prices[L])
+
+        R += 1
+
+    return profit
+
+        
+        
+        
+    
+
 
 
 if __name__ == "__main__":

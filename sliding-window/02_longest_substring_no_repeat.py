@@ -18,8 +18,21 @@ window with a set or last-seen-index map.
 
 
 def length_of_longest_substring(s: str) -> int:
-    # TODO: implement
-    raise NotImplementedError
+    L = 0
+    window = set()
+    max_len = 0
+    for R in range(len(s)):
+        if s[R] in window:
+            window.remove[s[L]]
+            L += 1
+        else:
+            window.add(s[R])
+            max_len = max(max_len, R - L + 1)
+
+            
+        
+        
+
 
 
 if __name__ == "__main__":
