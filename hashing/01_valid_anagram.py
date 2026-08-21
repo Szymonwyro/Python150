@@ -18,8 +18,26 @@ Target: O(n) time, O(1) space if you assume a fixed 26-letter alphabet
 
 
 def is_anagram(s: str, t: str) -> bool:
-    # TODO: implement
-    raise NotImplementedError
+    sorted_s = "".join(sorted(s))
+    sorted_t = "".join(sorted(t))
+    if sorted_s == sorted_t:
+        return True
+    else:
+        return False
+
+    ## this O(nlogn)
+
+def is_anagram2(s: str, t: str) -> bool:
+    #try for O(n) with hashmap
+    count_s = {}
+    count_t = {}
+    for char in s:
+        count_s[char] = count_s.get(char, 0) + 1
+    for char in t:
+        count_t[char] = count_t.get(char, 0) + 1
+    return count_s == count_t
+
+
 
 
 if __name__ == "__main__":

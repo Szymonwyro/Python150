@@ -18,8 +18,15 @@ from typing import List
 
 
 def top_k_frequent(nums: List[int], k: int) -> List[int]:
-    # TODO: implement
-    raise NotImplementedError
+    counts = {}
+    for i in nums:
+        counts = counts.get(i, 0) + 1
+    return sorted(counts, key = counts.get, reverse = True)[:k]
+
+
+    
+        
+    
 
 
 if __name__ == "__main__":
