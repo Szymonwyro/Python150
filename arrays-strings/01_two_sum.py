@@ -21,8 +21,12 @@ from typing import List
 
 
 def two_sum(nums: List[int], target: int) -> List[int]:
-    # TODO: implement
-    raise NotImplementedError
+    seen = {}
+    for i, j in enumerate(nums):
+        complement = target - j
+        if complement in seen:
+            return [seen[complement], j]
+        seen[j] = i
 
 
 if __name__ == "__main__":
