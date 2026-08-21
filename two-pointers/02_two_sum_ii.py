@@ -22,8 +22,16 @@ from typing import List
 
 
 def two_sum(numbers: List[int], target: int) -> List[int]:
-    # TODO: implement (two pointers, one from each end)
-    raise NotImplementedError
+    L = 0
+    R = len(numbers) - 1
+    while R > L:
+        total = numbers[L] + numbers[R]
+        if total > target:
+            R -= 1
+        elif total < target:
+            L += 1
+        else:
+            return [L+1, R+1] # 1-indexed
 
 
 if __name__ == "__main__":

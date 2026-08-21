@@ -20,8 +20,23 @@ non-alphanumeric chars, compare lowercase).
 
 
 def is_palindrome(s: str) -> bool:
-    # TODO: implement
-    raise NotImplementedError
+    L = 0
+    R = len(s) - 1
+    while R > L:
+        if s[L].lower().isalnum() and s[R].lower().isalnum():
+            if s[L].lower() == s[R].lower():
+                L += 1
+                R -= 1
+            else:
+                return False
+        elif not s[L].lower().isalnum():
+            L += 1
+        elif not s[R].lower().isalnum():
+            R -= 1
+        
+    return True
+
+    
 
 
 if __name__ == "__main__":
