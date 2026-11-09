@@ -20,12 +20,12 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> seen; // maps value -> index
-        for(int i = 0; i < int(nums).size(); i++) {
+        for(int i = 0; i < (int)nums.size(); i++) {
             int complement = target - nums[i];
             if (seen.count(complement)) {     // checks if need in seen
                 return {seen[complement], i};
             }
-            seen[nums[i]] = i
+            seen[nums[i]] = i;
         }
         return {};
     }
