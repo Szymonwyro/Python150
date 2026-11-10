@@ -18,9 +18,36 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        // TODO: your solution here
-        return false;
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+
+        return s == t;
     }
+
+    bool isAnagram2(string s, string t) {
+        unordered_map<char, int> cs, ct;
+        for (char c : s) cs[c]++;
+        for (char c : t) ct[c]++;
+
+        return cs == ct;
+    }
+
+    bool isAnagram3(string s, string t) {
+        if (s.size() != t.size()) return false;
+        // 'a' = 97, 'b' = 98 ... 'z' = 122
+        // difference of two letters is alphabet position
+        int count[26] = {0};
+        for (char c : s) count[c - 'a']++;
+        for (char c : t) count[c - 'a']--;
+
+        for (int x : count) {
+            if (x != 0) return false;
+        }
+        return true;
+
+    }
+
+
 };
 
 int main() {
