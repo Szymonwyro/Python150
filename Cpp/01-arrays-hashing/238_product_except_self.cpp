@@ -18,8 +18,24 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        // TODO: your solution here
-        return {};
+        vector<int> left(nums.size(), 1); // left[i] is product of everything to the left of i
+        vector<int> right(nums.size(), 1); // right[i] is product of everything to the righ of i
+        int n = nums.size();
+        // build left vector
+        for (int i =1; i < n; i++) {
+            left[i] = nums[i-1] * left[i-1];
+        }
+
+        //build right vector
+        for (int i = n - 2; i >= 0; i--) {
+            right[i] = nums[i+1] * right[i+1];
+        }
+
+        vector<int> answer(n);
+        for (int i =0; i < n; i++) {
+            answer[i] = left[i] * right[i];
+        }
+        return answer;
     }
 };
 
