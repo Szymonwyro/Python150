@@ -30,15 +30,46 @@ Note: input parsing is left to you in this one - practise it.
 """
 import sys
 
+def days_needed(sizes, capacity):
+    days = 1
+    load = 0
+    for size in sizes:
+        if load + size <= capacity:
+            load += size
+        else:
+            load = 0
+            load += size
+            days += 1
+    return days
+        
+
+
 
 def solve(sizes, d):
-    # TODO
-    pass
+    # which value of daily capacity 
+    # the least is the largest number in the list
+    # the most is the sum of the array - we process all at once
+    # we try middle value of C: can we process all within the days?
+    #   yes: capacity is too high or right, try the next binary search down including this one
+    #   no: capacity is too low try the next binary search up removing it from list
+    lower = max(sizes)
+    upper = sum(sizes)
+    while lower < upper:
+        mid = (lower + upper) // 2          # round down
+        if days_needed(sizes, mid) <= d:    # capacity is too big or right
+            upper = mid
+        else:                               # capacity is too low (took too many days), exclude and try higher
+            lower = mid + 1
+    return lower
+        
 
 
 def main():
-    # TODO
-    pass
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    d = int(data[1])
+    sizes = list(map(int, data[2:n+3]))
+    print(solve(sizes, d))
 
 
 if __name__ == "__main__":
