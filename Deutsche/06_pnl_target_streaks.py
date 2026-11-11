@@ -29,13 +29,32 @@ import sys
 
 
 def solve(pnl, k):
-    # TODO
-    pass
+    runs = {}
+    prefix_sum = []
+    count = 0
+    for i in range(len(pnl)):
+        if prefix_sum:
+            prefix_sum.append(pnl[i] + prefix_sum[i-1])
+        else:
+            prefix_sum.append(pnl[i])
+
+    for value in prefix_sum:
+        complement = value - k
+        if complement == 0:
+            count += 1
+        if complement in runs:
+            count += runs[complement]
+        runs[value] = runs.get(value, 0) + 1
+
+    return count
 
 
 def main():
-    # TODO
-    pass
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    k = int(data[1])
+    pnl = list(map(int, data[2:n+2]))
+    print(solve(pnl, k))
 
 
 if __name__ == "__main__":
