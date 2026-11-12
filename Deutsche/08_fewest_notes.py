@@ -31,12 +31,21 @@ import sys
 
 
 def solve(notes, amount):
-    # TODO
+    best = {0: 0} # keep a table of the smallest amount of notes for each value
+    for i in range(1, amount):
+        best_note = 100000
+        for note in notes:
+            best_note = min(best_note, best[amount - note])
+        else:
+
     pass
 
 
 def main():
-    # TODO
+    data = sys.stdin.read().split()
+    n = int(data[0])
+    notes = list(map(int, data[2: n+3]))
+    amount = int(data[1])
     pass
 
 
